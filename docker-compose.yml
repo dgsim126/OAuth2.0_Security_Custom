@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: example
+      MYSQL_USER: example
+      MYSQL_PASSWORD: example
+    ports:
+      - "3306:3306"
+  backend:
+    container_name: honorsParking
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      db-url: jdbc:postgresql://db:5432/example
+      db-username: example
+      db-password: example
