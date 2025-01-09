@@ -23,11 +23,15 @@ jobs:
 
       # application.yml 파일 생성
       - name: application.yml 파일 만들기
-        run: echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/config/application.yml
+        run: |
+          mkdir -p ./src/main/resources/config
+          echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/config/application.yml
 
       # application.properties 파일 생성
       - name: application.properties 파일 만들기
-        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/config/application.properties
+        run: |
+          mkdir -p ./src/main/resources/config
+          echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/config/application.properties
 
       - name: 테스트 및 빌드하기
         run: ./gradlew clean build
