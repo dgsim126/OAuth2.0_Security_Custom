@@ -18,6 +18,6 @@ services:
     ports:
       - "8080:8080"
     environment:
-      db-url: jdbc:postgresql://db:5432/example
+      db-url: jdbc:mysql://db:3306/example # 역할 확인
       db-username: example
       db-password: example
