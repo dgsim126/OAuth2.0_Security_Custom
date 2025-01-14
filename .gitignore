@@ -1,0 +1,15 @@
+# 민감한 파일 제외
+src/main/resources/config/application.properties
+
+# 빌드 파일 제외
+*.class
+*.jar
+*.war
+
+# IDE 관련 파일 제외
+*.iml
+.idea/
+.gradle/
+
+# 빌드 아티팩트 제외
+build/
