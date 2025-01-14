@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 
 services:
 
@@ -12,6 +12,12 @@ services:
       MYSQL_PASSWORD: 1234
     ports:
       - "3306:3306"
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
 
 #  backend:
 #    container_name: honorsParking

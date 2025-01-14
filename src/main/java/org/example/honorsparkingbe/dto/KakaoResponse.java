@@ -1,8 +1,9 @@
 package org.example.honorsparkingbe.dto;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class KakaoResponse implements OAuth2Response {
+public class KakaoResponse implements OAuth2Response, Serializable {
 
     private final Map<String, Object> attribute;
 

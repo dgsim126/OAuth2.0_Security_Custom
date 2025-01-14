@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Setter
 @Getter
-public class UserEntity {
+public class UserEntity implements Serializable {
 
-    // private static final long serialVersionUID = 1L; // 직렬화 버전 ID
+    private static final long serialVersionUID = 1L; // 직렬화 버전 ID
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

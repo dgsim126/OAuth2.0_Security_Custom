@@ -17,9 +17,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @Configuration
 @EnableWebSecurity
+@EnableRedisHttpSession
 public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
