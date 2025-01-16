@@ -2,6 +2,12 @@
 
 services:
 
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
   db:
     image: mysql
     restart: always
@@ -13,11 +19,7 @@ services:
     ports:
       - "3306:3306"
 
-  redis:
-    image: redis
-    restart: always
-    ports:
-      - "6379:6379"
+
 
 #  backend:
 #    container_name: honorsParking
