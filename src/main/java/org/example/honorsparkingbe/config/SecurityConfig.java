@@ -18,6 +18,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -48,8 +52,9 @@ public class SecurityConfig {
 
         // 접근 설정
         http
+                .cors(Customizer.withDefaults()) // CORS 활성화 -- 250119 추가(이상 시 삭제)
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/login/**", "/oauth2/**", "/api/v1/join").permitAll()
+                        .requestMatchers("/login/**", "/oauth2/**", "/api/v1/join", "/confirm").permitAll()
                         .requestMatchers("/api/v1/admin").hasRole("ADMIN") // 해당 role만 접근 가능
                         .requestMatchers("/api/v1/my/**").hasAnyRole("ADMIN", "USER") // /api/v1/my/**만 허용
                         .anyRequest().authenticated());
@@ -97,6 +102,33 @@ public class SecurityConfig {
 //                        .sessionFixation().changeSessionId()
 //                );
 
+
         return http.build();
+    }
+
+//    /**
+//     * CORS 설정
+//     */
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(true);
+//        config.addAllowedOrigin("http://localhost:3000"); // 프론트엔드 주소
+//        config.addAllowedHeader("*"); // 모든 헤더 허용
+//        config.addAllowedMethod("*"); // 모든 메서드 허용 (GET, POST, PUT, DELETE 등)
+//        source.registerCorsConfiguration("/**", config);
+//        return new CorsFilter(source);
+//    }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedOrigin("http://localhost:3000"); // 프론트엔드 주소
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
