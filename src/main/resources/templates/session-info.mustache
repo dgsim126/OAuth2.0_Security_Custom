@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Info</title>
+</head>
+<body>
+<h1>Session Information</h1>
+<p><strong>Username:</strong> {{username}}</p>
+<p><strong>Authorities:</strong>
+<ul>
+    {{#authorities}}
+        <li>{{authority}}</li>
+    {{/authorities}}
+</ul>
+</p>
+<p><strong>Authenticated:</strong> {{authenticated}}</p>
+<p><strong>Principal:</strong> {{principal}}</p>
+{{#additionalInfo}}
+    <p><strong>Additional Info:</strong> {{additionalInfo}}</p>
+{{/additionalInfo}}
+</body>
+</html>

@@ -33,6 +33,7 @@ public class JoinService {
         UserEntity data = new UserEntity();
 
         data.setUsername(joinDTO.getUsername());
+        data.setName(joinDTO.getName());
         data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword())); // 비밀번호 암호화
         data.setRole("ROLE_USER");
 
