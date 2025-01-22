@@ -11,3 +11,5 @@ public class HonorsParkingBeApplication {
     }
 
 }
+
+// CI/CD 성공 여부 확인용 주석 (변경 0회)
