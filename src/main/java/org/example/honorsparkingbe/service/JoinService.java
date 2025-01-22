@@ -1,7 +1,9 @@
 package org.example.honorsparkingbe.service;
 
 
-import org.example.honorsparkingbe.domain.UserEntity;
+import org.example.honorsparkingbe.domain.entity.MemberEntity;
+import org.example.honorsparkingbe.domain.enums.LoginPlatform;
+import org.example.honorsparkingbe.domain.enums.MemberRole;
 import org.example.honorsparkingbe.dto.JoinDTO;
 import org.example.honorsparkingbe.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,22 +22,26 @@ public class JoinService {
 
     /**
      * 회원가입 기본로직
-     * @param joinDTO
      */
     public void joinProcess(JoinDTO joinDTO) {
 
-        // username 중복 확인
-        boolean isUser = userRepository.existsByUsername(joinDTO.getUsername());
+        // authId 중복 확인
+        boolean isUser = userRepository.existsByAuthId(joinDTO.getAuthId());
         if (isUser) {
-            throw new IllegalArgumentException("Username already exists.");
+            throw new IllegalArgumentException("authId= "+ joinDTO.getAuthId() +" already exists.");
         }
 
-        UserEntity data = new UserEntity();
+        MemberEntity data = new MemberEntity();
 
-        data.setUsername(joinDTO.getUsername());
-        data.setName(joinDTO.getName());
-        data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword())); // 비밀번호 암호화
-        data.setRole("ROLE_USER");
+        data.setAuthId(joinDTO.getAuthId());
+        data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword()));
+        data.setUserName(joinDTO.getUserName());
+        data.setPhoneNumber(joinDTO.getPhoneNumber());
+        data.setEmail(joinDTO.getEmail());
+        data.setBirthdayYear(joinDTO.getBirthdayYear());
+        data.setBirthday(joinDTO.getBirthday());
+        data.setLoginPlatform(LoginPlatform.valueOf("NORMAL"));
+        data.setRole(MemberRole.valueOf("ROLE_USER"));
 
         userRepository.save(data);
     }

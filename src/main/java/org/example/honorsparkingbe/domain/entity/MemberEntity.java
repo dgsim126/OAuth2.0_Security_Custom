@@ -1,12 +1,15 @@
 package org.example.honorsparkingbe.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.honorsparkingbe.domain.enums.LoginPlatform;
 import org.example.honorsparkingbe.domain.enums.MemberRole;
 
 @Entity
 @Table( name = "member")
-
+@Getter
+@Setter
 public class MemberEntity {
 
     @Id

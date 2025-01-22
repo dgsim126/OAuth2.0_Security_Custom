@@ -1,6 +1,7 @@
 package org.example.honorsparkingbe.service;
 
-import org.example.honorsparkingbe.domain.UserEntity;
+import org.example.honorsparkingbe.domain.entity.MemberEntity;
+import org.example.honorsparkingbe.domain.enums.MemberRole;
 import org.example.honorsparkingbe.dto.*;
 import org.example.honorsparkingbe.repository.UserRepository;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -44,27 +45,27 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             return null;
         }
 
-        String username = oAuth2Response.getProvider()+" "+oAuth2Response.getProviderId();
-        UserEntity existData = userRepository.findByUsername(username);
+        String authId = oAuth2Response.getProvider()+" "+oAuth2Response.getProviderId();
+        MemberEntity existData = userRepository.findByAuthId(authId);
         String name= oAuth2Response.getName();
 
         String role = "ROLE_USER";
         if (existData == null) {
 
-            UserEntity userEntity = new UserEntity();
-            userEntity.setUsername(username);
-            userEntity.setEmail(oAuth2Response.getEmail());
-            userEntity.setRole(role);
-            userEntity.setName(name);
+            MemberEntity memberEntity = new MemberEntity();
+            memberEntity.setAuthId(authId);
+            memberEntity.setEmail(oAuth2Response.getEmail());
+            memberEntity.setRole(MemberRole.valueOf(role));
+            memberEntity.setUserName(name);
 
-            userRepository.save(userEntity);
+            userRepository.save(memberEntity);
         }
         else {
 
-            existData.setUsername(username);
+            existData.setAuthId(authId);
             existData.setEmail(oAuth2Response.getEmail());
 
-            role = existData.getRole();
+            role = String.valueOf(existData.getRole());
 
             userRepository.save(existData);
         }

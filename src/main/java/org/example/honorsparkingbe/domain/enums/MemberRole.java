@@ -1,6 +1,13 @@
 package org.example.honorsparkingbe.domain.enums;
 
-public enum MemberRole {
-    ADMIN,
-    USER
+import org.springframework.security.core.GrantedAuthority;
+
+public enum MemberRole implements GrantedAuthority {
+    ROLE_ADMIN,
+    ROLE_USER;
+
+    @Override
+    public String getAuthority() {
+        return name(); // 권한 이름 반환
+    }
 }

@@ -1,10 +1,10 @@
 package org.example.honorsparkingbe.repository;
 
-import org.example.honorsparkingbe.domain.UserEntity;
+import org.example.honorsparkingbe.domain.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserEntity, Integer> {
-    boolean existsByUsername(String username);
+public interface UserRepository extends JpaRepository<MemberEntity, Integer> {
+    boolean existsByAuthId(String authId);
 
-    UserEntity findByUsername(String username);
+    MemberEntity findByAuthId(String authId);
 }

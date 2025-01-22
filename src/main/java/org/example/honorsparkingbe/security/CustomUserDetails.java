@@ -6,50 +6,37 @@ package org.example.honorsparkingbe.security;
  * - UserEntity 객체를 기반으로 사용자 정보(username, password, 권한 등)를 제공
  */
 
-
-import org.example.honorsparkingbe.domain.UserEntity;
+import org.example.honorsparkingbe.domain.entity.MemberEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
 
-    private UserEntity userEntity;
+    private final MemberEntity memberEntity;
 
-    public CustomUserDetails(UserEntity userEntity) {
-        this.userEntity = userEntity;
+    public CustomUserDetails(MemberEntity memberEntity) {
+        this.memberEntity = memberEntity;
     }
 
-    // 목적: 사용자의 권한 목록 반환
+    // 사용자의 권한 목록 반환
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        Collection<GrantedAuthority> collection = new ArrayList<>();
-
-        collection.add(new GrantedAuthority() {
-
-            @Override
-            public String getAuthority() {
-
-                return userEntity.getRole();
-            }
-        });
-
-        return collection;
+        // MemberRole이 GrantedAuthority를 구현하고 있으므로 바로 반환 가능
+        return List.of(memberEntity.getRole());
     }
 
     @Override
     public String getPassword() {
-        return userEntity.getPassword();
+        return memberEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userEntity.getUsername();
+        return memberEntity.getAuthId();
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
