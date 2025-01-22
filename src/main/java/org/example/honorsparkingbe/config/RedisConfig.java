@@ -22,7 +22,7 @@ public class RedisConfig {
         template.setConnectionFactory(redisConnectionFactory);
         template.setKeySerializer(new StringRedisSerializer()); // Redis 키 직렬화
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer()); // JSON 직렬화 사용
-        // template.setValueSerializer(new JdkSerializationRedisSerializer()); // JDK 직렬화 사용
+        // template.setValueSerializer(new JdkSerializationRedisSerializer()); // JDK 직렬화 사용.
         return template;
     }
 }
