@@ -28,7 +28,7 @@ public class JoinController {
      * @param joinDTO
      * @return
      */
-    @PostMapping("/join")
+    @PostMapping("/auth/join")
     public ResponseEntity<String> joinPost(@RequestBody JoinDTO joinDTO) {
         try {
             joinService.joinProcess(joinDTO);

@@ -108,18 +108,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         else {
             return null;
         }
-
-
-//        else { // 이미 회원가입이 된 경우
-//
-//            existData.setAuthId(authId);
-//            existData.setEmail(oAuth2Response.getEmail());
-//
-//            role = String.valueOf(existData.getRole());
-//
-//            userRepository.save(existData);
-//        }
-
         return new CustomOAuth2User(oAuth2Response, role);
     }
 }

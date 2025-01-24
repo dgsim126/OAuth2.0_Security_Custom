@@ -54,7 +54,7 @@ public class SecurityConfig {
         http
                 .cors(Customizer.withDefaults()) // CORS 활성화 -- 250119 추가(이상 시 삭제)
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/login/**", "/oauth2/**", "/api/v1/join", "/confirm").permitAll()
+                        .requestMatchers("/api/v1/auth/login/**", "/login/**", "/oauth2/**", "/api/v1/auth/join", "/confirm").permitAll()
                         .requestMatchers("/api/v1/admin").hasRole("ADMIN")                  // 해당 role만 접근 가능
                         .requestMatchers("/api/v1/my/**").hasAnyRole("ADMIN", "USER") // /api/v1/my/**만 허용
                         .anyRequest().authenticated());
