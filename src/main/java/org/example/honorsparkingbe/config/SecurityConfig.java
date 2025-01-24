@@ -5,7 +5,7 @@ package org.example.honorsparkingbe.config;
  * - 접근 권한 설정, 로그인 로그아웃 및 세션 관리, CSRF 비활성화 등
  */
 
-import org.example.honorsparkingbe.service.CustomOAuth2UserService;
+import org.example.honorsparkingbe.security.CustomOAuth2UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
