@@ -6,11 +6,14 @@ import lombok.Setter;
 import org.example.honorsparkingbe.domain.enums.LoginPlatform;
 import org.example.honorsparkingbe.domain.enums.MemberRole;
 
+import java.io.Serializable;
+
 @Entity
 @Table( name = "member")
 @Getter
 @Setter
-public class MemberEntity {
+public class MemberEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

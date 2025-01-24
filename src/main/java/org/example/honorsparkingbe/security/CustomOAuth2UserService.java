@@ -76,6 +76,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 memberEntity.setEmail(oAuth2Response.getEmail());
                 memberEntity.setRole(MemberRole.valueOf(role));
                 memberEntity.setUserName(name);
+                memberEntity.setLoginPlatform(LoginPlatform.GOOGLE);
 
                 userRepository.save(memberEntity);
             }
@@ -94,6 +95,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 memberEntity.setEmail(oAuth2Response.getEmail());
                 memberEntity.setRole(MemberRole.valueOf(role));
                 memberEntity.setUserName(name);
+                memberEntity.setLoginPlatform(LoginPlatform.KAKAO);
+
+                KakaoResponse kakaoResponse = (KakaoResponse) oAuth2Response;
+                memberEntity.setBirthday(kakaoResponse.getBirthday());
+                memberEntity.setBirthdayYear(kakaoResponse.getBirthYear());
+                memberEntity.setPhoneNumber(kakaoResponse.getPhoneNumber());
 
                 userRepository.save(memberEntity);
             }
