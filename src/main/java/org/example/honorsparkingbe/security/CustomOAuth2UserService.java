@@ -1,4 +1,8 @@
 package org.example.honorsparkingbe.security;
+/**
+ * OAuth2 핵심 로직
+ * 카카오, 구글, 네이버 로그인 및 회원가입
+ */
 
 import org.example.honorsparkingbe.domain.entity.MemberEntity;
 import org.example.honorsparkingbe.domain.enums.LoginPlatform;
