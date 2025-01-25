@@ -27,7 +27,7 @@ public class KakaoResponse implements OAuth2Response, Serializable {
         Map<String, Object> kakaoAccount = (Map<String, Object>) attribute.get("kakao_account");
         return kakaoAccount != null && kakaoAccount.get("email") != null
                 ? kakaoAccount.get("email").toString()
-                : "test"; // 이메일 정보가 없을 경우 null 반환
+                : null; // 이메일 정보가 없을 경우 null 반환
     }
 
     @Override
@@ -59,7 +59,7 @@ public class KakaoResponse implements OAuth2Response, Serializable {
         Map<String, Object> kakaoAccount = (Map<String, Object>) attribute.get("kakao_account");
         return kakaoAccount != null && kakaoAccount.get("birthday") != null
                 ? kakaoAccount.get("birthday").toString()
-                : "test";
+                : null;
     }
 
     public Integer getBirthYear() {
@@ -67,7 +67,7 @@ public class KakaoResponse implements OAuth2Response, Serializable {
         Map<String, Object> kakaoAccount = (Map<String, Object>) attribute.get("kakao_account");
         return kakaoAccount != null && kakaoAccount.get("birthyear") != null
                 ? Integer.parseInt((String) kakaoAccount.get("birthyear"))
-                : 126;
+                : null;
     }
 
     public String getPhoneNumber() {
@@ -75,6 +75,6 @@ public class KakaoResponse implements OAuth2Response, Serializable {
         Map<String, Object> kakaoAccount = (Map<String, Object>) attribute.get("kakao_account");
         return kakaoAccount != null && kakaoAccount.get("phone_number") != null
                 ? kakaoAccount.get("phone_number").toString()
-                : "test";
+                : null;
     }
 }

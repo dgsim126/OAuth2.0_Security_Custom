@@ -69,7 +69,8 @@ public class SecurityConfig {
 
                 .oauth2Login((oauth2) -> oauth2
                         .loginPage("/login")
-                        .defaultSuccessUrl("/api/v1/session/info", true) // 소셜 로그인 성공 후 이동 경로
+                        //.defaultSuccessUrl("/api/v1/session/info", true) // 소셜 로그인 성공 후 이동 경로
+                        .successHandler(new CustomAuthenticationSuccessHandler()) // OAuth2 성공 핸들러 등록 (json 반환을 위해)
                         .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
                                 .userService(customOAuth2UserService)));
 

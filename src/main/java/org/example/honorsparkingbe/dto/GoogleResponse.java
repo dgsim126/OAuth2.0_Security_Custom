@@ -34,4 +34,19 @@ public class GoogleResponse implements OAuth2Response, Serializable {
 
         return attribute.get("name").toString();
     }
+
+    @Override
+    public String getPhoneNumber() {
+        return null;
+    }
+
+    @Override
+    public Integer getBirthYear() {
+        return null;
+    }
+
+    @Override
+    public String getBirthday() {
+        return null;
+    }
 }

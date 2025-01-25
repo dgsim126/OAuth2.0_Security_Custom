@@ -36,6 +36,16 @@ public class NaverResponse implements OAuth2Response, Serializable {
         return attribute.get("name").toString();
     }
 
+    @Override
+    public String getPhoneNumber() {
+        return null;
+    }
+
+    @Override
+    public Integer getBirthYear() {
+        return null;
+    }
+
     // 추가 데이터 반환
     public String getGender() {
         return attribute.get("gender") != null ? attribute.get("gender").toString() : null;
