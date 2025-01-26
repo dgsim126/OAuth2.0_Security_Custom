@@ -35,4 +35,31 @@ public class NaverResponse implements OAuth2Response, Serializable {
 
         return attribute.get("name").toString();
     }
+
+    @Override
+    public String getPhoneNumber() {
+        return null;
+    }
+
+    @Override
+    public Integer getBirthYear() {
+        return null;
+    }
+
+    // 추가 데이터 반환
+    public String getGender() {
+        return attribute.get("gender") != null ? attribute.get("gender").toString() : null;
+    }
+
+    public String getMobile() {
+        return attribute.get("mobile") != null ? attribute.get("mobile").toString() : null;
+    }
+
+    public String getBirthday() {
+        return attribute.get("birthday") != null ? attribute.get("birthday").toString() : null;
+    }
+
+    public String getBirthyear() {
+        return attribute.get("birthyear") != null ? attribute.get("birthyear").toString() : null;
+    }
 }

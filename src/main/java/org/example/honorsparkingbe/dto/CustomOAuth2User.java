@@ -53,4 +53,9 @@ public class CustomOAuth2User implements OAuth2User, Serializable { // serial!!!
 
         return oAuth2Response.getProvider()+" "+oAuth2Response.getProviderId();
     }
+
+    // 추가: OAuth2Response 반환 메서드
+    public OAuth2Response getOAuth2Response() {
+        return this.oAuth2Response;
+    }
 }
