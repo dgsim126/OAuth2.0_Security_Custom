@@ -55,7 +55,7 @@ public class SecurityConfig {
 
         http
                 .formLogin((formLogin) -> formLogin
-                        .loginProcessingUrl("/api/v1/auth/login") // 로그인 처리 경로 (HTML 폼의 action과 일치)
+                        .loginProcessingUrl("/api/v1/auth/login") // 로그인 처리 경로
                         .successHandler(new CustomFormLoginSuccessHandler()) // 커스텀 성공 핸들러 등록(json 반환)
                         .permitAll() // 로그인 페이지 접근 허용
                 )
