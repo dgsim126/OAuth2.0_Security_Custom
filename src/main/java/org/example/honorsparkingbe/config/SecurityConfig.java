@@ -5,24 +5,17 @@ package org.example.honorsparkingbe.config;
  * - 접근 권한 설정, 로그인 로그아웃 및 세션 관리, CSRF 비활성화 등
  */
 
-import org.example.honorsparkingbe.security.CustomAuthenticationSuccessHandler;
+import org.example.honorsparkingbe.security.CustomOAuth2LoginSuccessHandler;
+import org.example.honorsparkingbe.security.CustomFormLoginSuccessHandler;
 import org.example.honorsparkingbe.security.CustomOAuth2UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -62,15 +55,15 @@ public class SecurityConfig {
 
         http
                 .formLogin((formLogin) -> formLogin
-                        .loginProcessingUrl("/loginProc") // 로그인 처리 경로 (HTML 폼의 action과 일치)
-                        .successHandler(new CustomAuthenticationSuccessHandler()) // 커스텀 성공 핸들러 등록(json 반환)
+                        .loginProcessingUrl("/api/v1/auth/login") // 로그인 처리 경로 (HTML 폼의 action과 일치)
+                        .successHandler(new CustomFormLoginSuccessHandler()) // 커스텀 성공 핸들러 등록(json 반환)
                         .permitAll() // 로그인 페이지 접근 허용
                 )
 
                 .oauth2Login((oauth2) -> oauth2
                         .loginPage("/login")
                         //.defaultSuccessUrl("/api/v1/session/info", true) // 소셜 로그인 성공 후 이동 경로
-                        .successHandler(new CustomAuthenticationSuccessHandler()) // OAuth2 성공 핸들러 등록 (json 반환을 위해)
+                        .successHandler(new CustomOAuth2LoginSuccessHandler()) // OAuth2 성공 핸들러 등록 (json 반환을 위해)
                         .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
                                 .userService(customOAuth2UserService)));
 

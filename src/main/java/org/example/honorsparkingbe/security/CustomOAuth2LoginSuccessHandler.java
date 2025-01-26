@@ -1,4 +1,7 @@
 package org.example.honorsparkingbe.security;
+/**
+ * OAuth2 성공 핸들러
+ */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.honorsparkingbe.dto.CustomOAuth2User;
@@ -12,7 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class CustomOAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
@@ -24,7 +27,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Map<String, Object> responseData = new HashMap<>();
 
         String provider = oAuth2Response.getProvider();
-        responseData.put("provider", provider);
+        // responseData.put("provider", provider);
 
 
         switch (provider) {
