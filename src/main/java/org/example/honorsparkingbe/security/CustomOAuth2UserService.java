@@ -103,7 +103,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
                 KakaoResponse kakaoResponse = (KakaoResponse) oAuth2Response;
                 memberEntity.setBirthday(kakaoResponse.getBirthday());
-                memberEntity.setBirthdayYear(kakaoResponse.getBirthYear());
+                memberEntity.setBirthdayYear(
+                        kakaoResponse.getBirthYear() != null ? kakaoResponse.getBirthYear() : 0
+                );
                 memberEntity.setPhoneNumber(kakaoResponse.getPhoneNumber());
 
                 userRepository.save(memberEntity);
